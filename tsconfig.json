@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "es2019",
+    "module": "commonjs",
+    "strict": true,
+    "declaration": true,
+    "allowJS": false,
+    "outDir": "dist",
+    "lib": [
+      "es2019"
+    ],
+    "baseURL": ".",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true
+  },
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "src/**/*.spec.ts"
+  ]
+}

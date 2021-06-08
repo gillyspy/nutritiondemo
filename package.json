@@ -1,0 +1,28 @@
+{
+  "name": "nutritiondemo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gillyspy/nutritiondemo.git"
+  },
+  "author": "Gerald Gillespie",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gillyspy/nutritiondemo/issues"
+  },
+  "homepage": "https://github.com/gillyspy/nutritiondemo#readme",
+  "devDependencies": {
+    "@types/jest": "^26.0.23",
+    "@types/node": "^15.12.2",
+    "jest": "^27.0.4",
+    "ts-jest": "^27.0.3",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.3.2"
+  }
+}
