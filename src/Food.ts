@@ -3,28 +3,59 @@ import EmptyFoodNameError from "./errors/EmptyFoodNameError";
 import InvalidFoodAmountError from "./errors/InvalidFoodAmountError";
 
 
-class Food{
+class Food {
+    private currentValues: Nutritions;
+
     constructor(private readonly name: string,
-                private readonly unit : string,
-                private readonly baseValues : Nutritions ){
+                private readonly unit: string,
+                private readonly baseValues: Nutritions) {
 
-        if( name.length === 0)
-            throw new EmptyFoodNameError()
+        this.currentValues = {...baseValues};
 
-        if( baseValues.amount <= 0 )
-            throw new InvalidFoodAmountError( baseValues.amount );
+        this.validateFoodName(name);
+        this.validateFoodAmount(baseValues.amount);
     }
 
-    getName() : string {
+    private validateFoodAmount(amount: number) {
+        if (amount <= 0)
+            throw new InvalidFoodAmountError(amount);
+    }
+
+    private validateFoodName(name: string) {
+        if (name.length === 0) {
+            throw new EmptyFoodNameError()
+        }
+    }
+
+    getName(): string {
         return this.name;
     }
 
-    getUnit() : string{
+    getUnit(): string {
         return this.unit;
     }
 
-    getBaseValues() : Nutritions{
+    getBaseValues(): Nutritions {
         return this.baseValues;
+    }
+
+    getCurrentValues(): Nutritions {
+        return this.currentValues;
+    }
+
+    changeAmount(amount: number): void {
+        this.validateFoodAmount(amount);
+        this.currentValues.amount = amount;
+        this.calculateCaloriesFromAmount(amount);
+    }
+
+    calculateCaloriesFromAmount(amount: number): void {
+        this.currentValues.calories =
+            Math.ceil(
+                this.currentValues.amount
+                / this.baseValues.amount
+                * this.currentValues.calories
+            );
     }
 }
 
