@@ -4,12 +4,12 @@
     "module": "commonjs",
     "strict": true,
     "declaration": true,
-    "allowJS": false,
+    "allowJs": false,
     "outDir": "dist",
     "lib": [
       "es2019"
     ],
-    "baseURL": ".",
+    "baseUrl": ".",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true
   },
