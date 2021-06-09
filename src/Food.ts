@@ -1,13 +1,13 @@
 import Nutritions from "./Nutritions";
 import EmptyFoodNameError from "./errors/EmptyFoodNameError";
 import InvalidFoodAmountError from "./errors/InvalidFoodAmountError";
-
+import Units from './Units'
 
 class Food {
     private currentValues: Nutritions;
 
     constructor(private readonly name: string,
-                private readonly unit: string,
+                private readonly unit: Units,
                 private readonly baseValues: Nutritions) {
 
         this.currentValues = {...baseValues};
@@ -46,15 +46,18 @@ class Food {
     changeAmount(amount: number): void {
         this.validateFoodAmount(amount);
         this.currentValues.amount = amount;
-        this.calculateCaloriesFromAmount(amount);
+
+        ['fat','protein', 'carbohydrates','calories'].forEach( macro =>{
+            this.calculateCaloriesFromAmount(macro);
+        })
     }
 
-    calculateCaloriesFromAmount(amount: number): void {
-        this.currentValues.calories =
+    calculateCaloriesFromAmount(macro : string): void {
+        this.currentValues[macro] =
             Math.ceil(
                 this.currentValues.amount
                 / this.baseValues.amount
-                * this.currentValues.calories
+                * this.baseValues[macro]
             );
     }
 }
